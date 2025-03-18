@@ -26,5 +26,8 @@
     <ClInclude Include="..\Core\Game\Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Core\Game\GameState.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

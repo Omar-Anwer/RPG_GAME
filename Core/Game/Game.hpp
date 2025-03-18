@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <iostream>
+#include <string>
 
 #include <ctime>
 #include <cstdint>
@@ -17,25 +18,33 @@ class Game {
 
 private:
 
-	sf::RenderWindow *sfWindow;
-	sf::Event sfEvent;
-	sf::Clock dtClock;
-
-	float dt;
-
-	void initWindow();
-public:
-	Game();
-	virtual ~Game();
-
 	// Methods
+	void handleEvents();
 	void update(void);
-	void updateDt(void);
-	void updateSfmlEvents(void);
-	void run(void);
 	void render(void);
 
-};
+	// Members
+	sf::RenderWindow m_window;
+	sf::Event m_event{};
+	sf::Clock m_dtClock;
+	sf::Time m_dt;
 
+	// Compile-time constants
+	static constexpr uint16_t WINDOW_WIDTH = 800;
+	static constexpr uint16_t WINDOW_HEIGHT = 600;
+	static constexpr const char* WINDOW_TITLE = "Game Title";
+
+public:
+	Game();
+	~Game() = default;
+
+	// Copy Prevention
+	Game(const Game&) = delete;
+	Game& operator=(const Game&) = delete;
+
+	// Methods
+	void run(void);
+
+};
 
 #endif // GAME_H

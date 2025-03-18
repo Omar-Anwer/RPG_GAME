@@ -1,48 +1,40 @@
 #include "Game.hpp"
 #include <iostream>
 
-void Game::initWindow() {
-	this->sfWindow = new sf::RenderWindow(sf::VideoMode({ 800, 600 }), "Game");
+Game::Game() :
+    m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE)
+{
+    m_window.setFramerateLimit(120);
+    m_window.setVerticalSyncEnabled(false);
+   // m_window.setKeyRepeatEnabled(false);
 }
 
-Game::Game() {
-	this->initWindow();
+void Game::update() {
+    // Update game state here
 }
 
-Game::~Game() {
-	delete this->sfWindow;
-}
-
-void Game::update(void) {
-	this->updateSfmlEvents();
-}
-
-void Game::updateDt(void) {
-	// one frame time 
-	this->dt = this->dtClock.restart().asSeconds();
-	system("cls");
-	std::cout << this->dt << "\n";
-}
-
-void Game::updateSfmlEvents(void) {
-
-	while (this->sfWindow->pollEvent(this->sfEvent)) {
-		if (sf::Event::Closed == this->sfEvent.type) {
-			this->sfWindow->close();
-		}
-	}
+void Game::handleEvents() {
+    while (m_window.pollEvent(m_event)) {
+        if (sf::Event::Closed == m_event.type)
+            m_window.close();
+    }
 }
 
 void Game::run(void) {
-	while (this->sfWindow->isOpen()) {
-		this->updateDt();
-		this->update();
-		this->render();
-	}
+    while (m_window.isOpen()) {
+        m_dt = m_dtClock.restart();
+        handleEvents();
+        update();
+        render();
+#ifdef _WIN32
+        system("cls");
+#endif // _WIN32
+        std::cout << "Delta time: " << m_dt.asSeconds() << "s\n";
+    }
 }
 
 void Game::render(void) {
-	this->sfWindow->clear();
-	// Render Items
-	this->sfWindow->display();
+    m_window.clear();
+    // Draw game objects here
+    m_window.display();
 }

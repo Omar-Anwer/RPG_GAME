@@ -24,6 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Core\Game\Game.hpp" />
+    <ClInclude Include="..\Core\Game\GameState.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
