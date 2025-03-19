@@ -21,12 +21,15 @@
     <ClCompile Include="..\Core\Game\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Core\Game\State.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Core\Game\Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\Game\GameState.hpp">
+    <ClInclude Include="..\Core\Game\State.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
