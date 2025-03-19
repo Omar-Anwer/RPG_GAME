@@ -9,17 +9,26 @@ Game& Game::getInstance() {
 
 Game::Game() {
     this->initWindow();
+    this->initStates();
 }
 
 Game::~Game() {
+    delete m_window;
+    while (!states.empty()){
+        delete states.top();
+        states.pop();
+    }
 }
 
-void Game::initWindow() {
-    //m_window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-    m_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
+void Game::initWindow(void) {
+    m_window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
     m_window->setFramerateLimit(120);
     m_window->setVerticalSyncEnabled(false);
     // m_window.setKeyRepeatEnabled(false);
+}
+
+void Game::initStates(void) {
+    states.push(new GameState(m_window));
 }
 
 void Game::handleEvents(void) {
@@ -32,6 +41,10 @@ void Game::handleEvents(void) {
 
 void Game::update(void) {
     handleEvents();
+    //Render items
+    if (!this->states.empty()) {
+        this->states.top()->update(m_dt);
+    }
 }
 
 void Game::run(void) {
@@ -48,6 +61,10 @@ void Game::run(void) {
 
 void Game::render(void) {
     m_window->clear();
-    // Draw game objects here
+
+    //Render items
+    if (!states.empty()) {
+        states.top()->render(m_window);
+    }
     m_window->display();
 }

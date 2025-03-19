@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{056944c8-c454-4d13-a858-5297b372a66d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Game">
+      <UniqueIdentifier>{68dd8573-4536-4009-bad8-63ab9cd51d26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\States">
+      <UniqueIdentifier>{1377535b-4fe2-4e1b-82ed-b3e08c3b42d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Core\main.cpp">
@@ -21,16 +30,22 @@
     <ClCompile Include="..\Core\Game\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Core\Game\State.cpp">
+    <ClCompile Include="..\Core\States\State.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\States\GameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Core\Game\Game.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Core\States\State.hpp">
+      <Filter>Header Files\Core\States</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\Game\State.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Core\States\GameState.hpp">
+      <Filter>Header Files\Core\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Game\Game.hpp">
+      <Filter>Header Files\Core\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
