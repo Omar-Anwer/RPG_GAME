@@ -21,15 +21,13 @@ protected:
 	std::map<std::string, sf::Texture> textures;    
 
 public:
-    State();
-    State(sf::RenderWindow* window);
-    virtual ~State();
+    State() = default;
+    explicit State(sf::RenderWindow* window);
+    virtual ~State() = default;
 
-    const bool& getQuit() const;
+    bool getQuit() const;
 
-    virtual void checkQuit();
     virtual void endState() = 0;
-
     virtual void update(const float& dt) = 0;
     virtual void handleInput(const float& dt) = 0;
     virtual void render(sf::RenderTarget* target = nullptr) = 0;
@@ -38,4 +36,4 @@ public:
 //class MainMenuState : public State { /* ... */ };
 //class PlayingState : public State { /* ... */ };
 
-#endif // STATE_HPP
+#endif

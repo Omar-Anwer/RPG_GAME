@@ -3,6 +3,12 @@
 #include "SFML\System.hpp"
 #include "SFML\Window.hpp"
 #include "SFML\Graphics.hpp"
+#include <concepts>
+
+//template<typename T>
+//concept Drawable = requires(T t, sf::RenderTarget & target) {
+//	{ t.draw(target) } -> std::same_as<void>;
+//};
 
 class Entity
 {
@@ -16,6 +22,5 @@ public:
 
 	virtual void update(const float& dt);
 	virtual void render(sf::RenderTarget* target = nullptr);
-
-	virtual void move(const float& dt, const float& dx, const float& dy);
+	virtual void move(const float& dt, const sf::Vector2f& direction);
 };

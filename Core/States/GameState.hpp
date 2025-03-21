@@ -1,21 +1,21 @@
 #ifndef GAME_STATE_HPP
 #define GAME_STATE_HPP
 
-#include "Core\States\State.hpp"
+#include "State.hpp"
 
 class GameState : public State
 {
 private:
 	Entity m_player;
 public:
-	GameState(sf::RenderWindow* window);
-	virtual ~GameState();
+	explicit GameState(sf::RenderWindow* window);
+	~GameState() override = default;
 
 	// Methods
-	void endState();
-	void update(const float& dt);
-	void handleInput(const float& dt);
-	void render(sf::RenderTarget* target = nullptr);
+	void endState() override;
+	void update(const float& dt) override;
+	void handleInput(const float& dt) override;
+	void render(sf::RenderTarget* target = nullptr) override;
 };
 
 #endif // GAME_STATE_HPP

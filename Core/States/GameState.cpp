@@ -1,12 +1,20 @@
 #include "GameState.hpp"
+#include "Core/Input/InputHandler.hpp"
+#include "Core/Commands/MoveCommand.hpp"
+
+
 
 GameState::GameState(sf::RenderWindow* window):
 	State(window)
 {
-}
+	//auto& input = InputHandler::getInstance();
 
-GameState::~GameState()
-{
+
+	//// Bind actions to movement commands
+	//input.bindAction(Action::MOVE_LEFT, std::make_unique<MoveCommand>(m_player, sf::Vector2f(-1.f, 0.f)));
+	//input.bindAction(Action::MOVE_RIGHT, std::make_unique<MoveCommand>(m_player, sf::Vector2f(1.f, 0.f)));
+	//input.bindAction(Action::MOVE_UP, std::make_unique<MoveCommand>(m_player, sf::Vector2f(0.f, -1.f)));
+	//input.bindAction(Action::MOVE_DOWN, std::make_unique<MoveCommand>(m_player, sf::Vector2f(0.f, 1.f)));
 }
 
 void GameState::endState()
@@ -22,23 +30,32 @@ void GameState::update(const float& dt)
 
 void GameState::handleInput(const float& dt)
 {
-	checkQuit();
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		m_player.move(dt, -1.0F, 0.0F);
+	auto& input = InputHandler::getInstance();
+
+	// Check for quit
+	if (input.isActive(Action::QUIT)) {
+		m_isQuit = true;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		m_player.move(dt, 1.0F, 0.0F);
+
+	// Movement handling
+	sf::Vector2f movement(0.f, 0.f);
+	if (input.isActive(Action::MOVE_LEFT)) {
+		movement.x -= 1.f;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	{
-		m_player.move(dt, 0.0F, -1.0F);
+	if (input.isActive(Action::MOVE_RIGHT)) {
+		movement.x += 1.f;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	{
-		m_player.move(dt, 0.0F, 1.0F);
+	if (input.isActive(Action::MOVE_UP)) {
+		movement.y -= 1.f;
 	}
+	if (input.isActive(Action::MOVE_DOWN)) {
+		movement.y += 1.f;
+	}
+	if (movement.x != 0.f || movement.y != 0.f) {
+		m_player.move(dt, movement);
+	}
+	//input.handleInput(dt);  // Executes bound commands
+
 }
 
 void GameState::render(sf::RenderTarget* target)

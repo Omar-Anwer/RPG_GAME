@@ -1,5 +1,10 @@
 #include "Game.hpp"
+#include "Core/Input/InputHandler.hpp"
+#include "Core/Commands/MoveCommand.hpp"
+
 #include <iostream>
+#include <memory>
+
 
 // Singleton instance accessor
 Game& Game::getInstance()
@@ -10,35 +15,44 @@ Game& Game::getInstance()
 
 Game::Game()
 {
-    this->initWindow();
-    this->initStates();
+    m_dt = 0.f;
+    initWindow();
+    initKeys();
+    initStates();
 }
 
 Game::~Game()
 {
-    delete m_window;
+    //delete m_window;
     while (!states.empty())
     {
-        delete states.top();
+        //delete states.top();
         states.pop();
     }
 }
 
-void Game::initWindow(void) 
-{
-    m_window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-    m_window->setFramerateLimit(120);
+void Game::initWindow() {
+    m_window = std::make_unique<sf::RenderWindow>(
+        sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
+        WINDOW_TITLE);
+    m_window->setFramerateLimit(60);
     m_window->setVerticalSyncEnabled(false);
-    // m_window.setKeyRepeatEnabled(false);
-}
-
-void Game::initStates(void) 
-{
-    states.push(new GameState(m_window));
+    //m_window->setKeyRepeatEnabled(false);
 }
 
 void Game::initKeys(void)
 {
+    // Initialize input bindings
+    auto& input = InputHandler::getInstance();
+    const std::string configPath = "../Config/keys.ini";
+    input.loadKeyBindings(configPath);
+}
+
+void Game::initStates(void) 
+{
+    //states.push(std::make_unique<MainMenuState>(m_window.get()));
+    states.push(std::make_unique<GameState>(m_window.get()));
+
 }
 
 void Game::endApplication() 
@@ -60,7 +74,6 @@ void Game::handleEvents(void)
 
 void Game::update(void)
 {
-    handleEvents();
     //Render items
     if (!states.empty())
     {
@@ -68,7 +81,7 @@ void Game::update(void)
         if (states.top()->getQuit())
         {
             states.top()->endState();
-            delete states.top();
+            //delete states.top();
             states.pop();
         }
     }
@@ -84,6 +97,7 @@ void Game::run(void)
     while (m_window->isOpen()) 
     {
         m_dt = m_dtClock.restart().asSeconds();
+        handleEvents();
         update();
         render();
 #ifdef _WIN32
@@ -100,7 +114,7 @@ void Game::render(void)
     //Render items
     if (!states.empty())
     {
-        states.top()->render(m_window);
+        states.top()->render(m_window.get());
     }
 
     m_window->display();
