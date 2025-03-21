@@ -25,22 +25,49 @@
     <Filter Include="Header Files\Entities">
       <UniqueIdentifier>{1f6f223f-f7b1-4df0-ba08-ed07179959bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core\Input">
+      <UniqueIdentifier>{92e9cd4b-2165-42f3-9c44-6e4a2baf6bf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{81307482-65ee-41fb-9bd7-df09262db40c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\States">
+      <UniqueIdentifier>{5f27847d-dc53-4b0e-8308-e3ef60365bdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Input">
+      <UniqueIdentifier>{36a53940-65d9-4c83-a6f9-42053d36fadf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{4c123fcd-e7cc-409c-9bc5-f938967f13ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Game">
+      <UniqueIdentifier>{8572a26b-bec3-46a9-b9e7-fceabc85ac40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Core\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Core\Game\Game.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\Core\Input\InputHandler.cpp">
+      <Filter>Source Files\Core\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Core\States\State.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\Core\Commands\MoveCommand.cpp">
+      <Filter>Source Files\Core\Input</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\States\GameState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core\States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\States\State.cpp">
+      <Filter>Source Files\Core\States</Filter>
     </ClCompile>
     <ClCompile Include="..\Entities\Entity.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\Game\Game.cpp">
+      <Filter>Source Files\Core\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\States\MainMenuState.cpp">
+      <Filter>Source Files\Core\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +82,18 @@
     </ClInclude>
     <ClInclude Include="..\Entities\Entity.hpp">
       <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Commands\Command.hpp">
+      <Filter>Header Files\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Commands\MoveCommand.hpp">
+      <Filter>Header Files\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Input\InputHandler.hpp">
+      <Filter>Header Files\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\States\MainMenuState.hpp">
+      <Filter>Header Files\Core\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
