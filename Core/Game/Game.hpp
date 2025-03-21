@@ -28,6 +28,9 @@ private:
 	// Methods
 	void initWindow(void);
 	void initStates(void);
+	void initKeys(void);
+
+	void endApplication();
 
 
 	void handleEvents(void);
@@ -40,7 +43,7 @@ private:
 	sf::Clock m_dtClock;
 
 	std::stack<State*> states;
-
+	//std::map<char*, int> supportedKeys;
 
 	float m_dt;
 

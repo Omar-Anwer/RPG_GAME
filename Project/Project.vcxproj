@@ -23,11 +23,13 @@
     <ClCompile Include="..\Core\main.cpp" />
     <ClCompile Include="..\Core\States\GameState.cpp" />
     <ClCompile Include="..\Core\States\State.cpp" />
+    <ClCompile Include="..\Entities\Entity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Core\Game\Game.hpp" />
     <ClInclude Include="..\Core\States\GameState.hpp" />
     <ClInclude Include="..\Core\States\State.hpp" />
+    <ClInclude Include="..\Entities\Entity.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

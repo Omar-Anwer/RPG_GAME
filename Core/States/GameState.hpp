@@ -5,6 +5,8 @@
 
 class GameState : public State
 {
+private:
+	Entity m_player;
 public:
 	GameState(sf::RenderWindow* window);
 	virtual ~GameState();
@@ -12,6 +14,7 @@ public:
 	// Methods
 	void endState();
 	void update(const float& dt);
+	void handleInput(const float& dt);
 	void render(sf::RenderTarget* target = nullptr);
 };
 
